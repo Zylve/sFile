@@ -1,4 +1,5 @@
 Not much here yet
 
-Requirements:  
+Requirements:
+bsdtar
 ![trolley](trolley.png)
