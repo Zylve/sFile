@@ -1,7 +1,9 @@
 #include <iostream>
-#include "extract.hpp"
+#include <bits/stdc++.h>
 
 int main (int argc, char *argv[])
 {
-    std::cout << "hey";
+    std::string str = "cmatrix";
+    const char *command = str.c_str();
+    system(command);
 }
