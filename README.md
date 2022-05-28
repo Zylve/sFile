@@ -1,5 +1,6 @@
-Not much here yet
+[![CodeFactor](https://www.codefactor.io/repository/github/zylve/sfile/badge)](https://www.codefactor.io/repository/github/zylve/sfile)
 
-Requirements:
+Requirements
+============
+
 bsdtar
-![trolley](trolley.png)
