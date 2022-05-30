@@ -4,6 +4,7 @@
 #include "config.hpp"
 
 std::string configPath;
+std::string scriptPath;
 
 int main (int argc, char *argv[])
 {
@@ -15,4 +16,5 @@ int main (int argc, char *argv[])
         configPath = conf.configFile;
         conf.makeConfig();
     }
+    scriptPath = conf.scriptPath;
 }

@@ -12,6 +12,7 @@ class config
 
         std::string homeEnvVar;
         std::string configFile;
+        std::string scriptPath;
 
         bool checkForConfig()
         {
@@ -29,8 +30,7 @@ class config
             fFile.open(configFile, std::ios::out);
             if(fFile.is_open())
             {
-                system("mkdir $HOME/.local/share/sfile");
-                fFile << "scriptPath=" + homeEnvVar + "/.local/share/sfile/";
+                fFile << "# Scripts are located at $HOME/.local/share/sfile/";
                 fFile.close();
             }
         }
@@ -39,5 +39,10 @@ class config
         {
             homeEnvVar = std::getenv("HOME");
             configFile = homeEnvVar + "/.config/sfileConf.txt";
+            if(!std::filesystem::exists(homeEnvVar + "/.local/share/sfile/"))
+            {
+                system(("mkdir " + homeEnvVar + "/.local/share/sfile/").c_str());
+            }
+            scriptPath = homeEnvVar + "/.local/share/sfile";
         }
 };
