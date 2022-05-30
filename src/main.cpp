@@ -3,10 +3,16 @@
 
 #include "config.hpp"
 
-std::string mainArg;
+std::string configPath;
 
 int main (int argc, char *argv[])
 {
     config conf;
-    conf.checkForConfig();
+    if(conf.checkForConfig())
+    {
+        configPath = conf.configFile;
+    }else{
+        configPath = conf.configFile;
+        conf.makeConfig();
+    }
 }

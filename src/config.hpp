@@ -4,36 +4,40 @@
 
 #include <filesystem>
 #include <fstream>
+#include <sys/stat.h>
 
 class config
 {
     public:
-        configObject checkForConfig()
+
+        std::string homeEnvVar;
+        std::string configFile;
+
+        bool checkForConfig()
         {
-            std::string homeEnvVar = std::getenv("HOME");
-            std::string configFile = homeEnvVar + "/.config/sfileConf.txt";
             if(std::filesystem::exists(configFile))
             {
-                return configObject(true, configFile);
+                return true;
             }else{
-                return configObject(false, configFile);
+                return false;
             }
         }
+
+        void makeConfig()
+        {
+            std::fstream fFile;
+            fFile.open(configFile, std::ios::out);
+            if(fFile.is_open())
+            {
+                system("mkdir $HOME/.local/share/sfile");
+                fFile << "scriptPath=" + homeEnvVar + "/.local/share/sfile/";
+                fFile.close();
+            }
+        }
+
         config()
         {
-
-        }
-};
-
-class configObject
-{
-    public:
-        bool exists;
-        std::string path;
-
-        configObject(bool _exists, std::string _path)
-        {
-            exists = _exists;
-            path = _path;
+            homeEnvVar = std::getenv("HOME");
+            configFile = homeEnvVar + "/.config/sfileConf.txt";
         }
 };
