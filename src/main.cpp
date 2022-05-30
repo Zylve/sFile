@@ -1,9 +1,12 @@
 #include <iostream>
-#include "extract.hpp"
+#include <string>
+
+#include "config.hpp"
+
+std::string mainArg;
 
 int main (int argc, char *argv[])
 {
-    std::string targetArchive = argv[argc - 1];
-    extractTarget tar(targetArchive);
-    tar.extractArchive();
+    config conf;
+    conf.checkForConfig();
 }
