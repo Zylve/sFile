@@ -9,12 +9,10 @@ std::string scriptPath;
 int main (int argc, char *argv[])
 {
     config conf;
-    if(conf.checkForConfig())
+    if(!conf.checkForConfig())
     {
-        configPath = conf.configFile;
-    }else{
-        configPath = conf.configFile;
         conf.makeConfig();
     }
+    configPath = conf.configFile;
     scriptPath = conf.scriptPath;
 }
