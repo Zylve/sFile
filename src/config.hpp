@@ -9,7 +9,6 @@
 class config
 {
     public:
-
         std::string homeEnvVar;
         std::string configFile;
         std::string scriptPath;
