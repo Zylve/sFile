@@ -10,10 +10,16 @@ bool exitLoop;
 
 int main (int argc, char *argv[])
 {
-    if(argc != 1)
+    if(argc == 2 && std::string(argv[1]) == "--help" || std::string(argv[1]) == "-h" || std::string(argv[1]) == "help")
     {
-        std::cout << "Unknown arguments" << std::endl;
-        return 1;
+        std::cout << "Usage: " << argv[0] << " [config] [script]" << std::endl;
+        std::cout << "sfile --help/-h/help - Show this\n";
+        std::cout << "s new [script] - Create a new script file\n";
+        std::cout << "s run [script] - Run a script file\n";
+        std::cout << "s edit [script] - Edit a script file\n";
+        std::cout << "s del [script] - Delete a script file\n";
+        std::cout << "s list - List all script files\n";
+        return 0;
     }
 
     config conf;
