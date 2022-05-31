@@ -4,9 +4,7 @@
 #include "config.hpp"
 #include "script.hpp"
 
-std::string configPath;
-std::string scriptPath;
-std::string scriptName;
+std::string configPath, scriptPath, scriptName;
 
 int main (int argc, char *argv[])
 {
