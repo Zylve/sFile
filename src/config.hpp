@@ -30,7 +30,7 @@ class config
             fFile.open(configFile, std::ios::out);
             if(fFile.is_open())
             {
-                fFile << "# Scripts are located at $HOME/.local/share/sfile/";
+                fFile << "# Scripts are located at $HOME/.local/share/sfile/" << std::endl;
                 fFile.close();
             }
         }
@@ -38,7 +38,7 @@ class config
         config()
         {
             homeEnvVar = std::getenv("HOME");
-            configFile = homeEnvVar + "/.config/sfileConf.txt";
+            configFile = homeEnvVar + "/.config/sfile.conf";
             if(!std::filesystem::exists(homeEnvVar + "/.local/share/sfile/"))
             {
                 system(("mkdir " + homeEnvVar + "/.local/share/sfile/").c_str());
