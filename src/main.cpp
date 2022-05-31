@@ -10,7 +10,7 @@ bool exitLoop;
 
 int main (int argc, char *argv[])
 {
-    if(argc == 2 && std::string(argv[1]) == "--help" || std::string(argv[1]) == "-h" || std::string(argv[1]) == "help")
+    if(argc == 2 && std::string(argv[1]) == "--help" || "-h" || "help")
     {
         std::cout << "Usage: " << argv[0] << " [config] [script]" << std::endl;
         std::cout << "sfile --help/-h/help - Show this\n";
