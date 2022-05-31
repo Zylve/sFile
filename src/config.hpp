@@ -9,19 +9,13 @@
 class config
 {
     public:
-
         std::string homeEnvVar;
         std::string configFile;
         std::string scriptPath;
 
         bool checkForConfig()
         {
-            if(std::filesystem::exists(configFile))
-            {
-                return true;
-            }else{
-                return false;
-            }
+            return std::filesystem::exists(configFile);
         }
 
         void makeConfig()
