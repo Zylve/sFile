@@ -37,6 +37,6 @@ class config
             {
                 system(("mkdir " + homeEnvVar + "/.local/share/sfile/").c_str());
             }
-            scriptPath = homeEnvVar + "/.local/share/sfile";
+            scriptPath = homeEnvVar + "/.local/share/sfile/";
         }
 };

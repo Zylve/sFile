@@ -8,9 +8,13 @@ class script
         std::vector<std::string> cmds;
         std::string file;
 
-        script()
+        void addCommand(std::string command)
         {
-            
+            cmds.push_back(command);
         }
 
+        script(std::string _file)
+        {
+            file = _file;
+        }
 };
