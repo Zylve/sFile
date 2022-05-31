@@ -15,12 +15,7 @@ class config
 
         bool checkForConfig()
         {
-            if(std::filesystem::exists(configFile))
-            {
-                return true;
-            }else{
-                return false;
-            }
+            return std::filesystem::exists(configFile);
         }
 
         void makeConfig()
