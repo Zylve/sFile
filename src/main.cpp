@@ -2,13 +2,15 @@
 #include <string>
 
 #include "config.hpp"
-#include "script.hpp"
+#include "scriptManager.hpp"
 #include "help.hpp"
 
 std::string configPath, scriptPath, scriptName;
 bool exitLoop;
 config conf;
 help sHelp;
+
+void script();
 
 int main (int argc, char *argv[])
 {
@@ -37,24 +39,22 @@ int main (int argc, char *argv[])
         sHelp.Delete();
         sHelp.List();
         return 0;
-    } else if(std::string(argv[1]) == "new" || "-n") { /* TODO: make new command */ }
-    else if(std::string(argv[1]) == "list" || "-l")
-    {
-        std::cout << "List of script files:\n";
-        for(auto &file : std::filesystem::directory_iterator("."))
-        {
-            if(file.path().extension() == ".sfile")
-            {
-                std::cout << file.path().filename() << "\n";
-            }
-        }
-        return 0;
     }
+    // TODO: Add make and run certain class from scriptManager for switch case
 
-    script newScript(scriptPath + argv[1] + ".sh");
+    // Run if case = "new"
+    buildScript();
 
-    // what is this lol
+    return 0;
+}
 
+void buildScript()
+{
+    // Create new script
+    scriptBuilder script(scriptPath + "foo bar" /* argv[2] */ + ".sh");
+
+
+    // Iterate through std::cin and add commands to script until the user runs "s quit"
     std::cout << "Welcome to sfile. Type \"s help\" for a listing of commands" << "\n";
     while (!exitLoop)
     {
@@ -62,6 +62,9 @@ int main (int argc, char *argv[])
 
         std::cout << "sfile >> ";
         std::cin >> _command;
+
+        // TODO: offload help stuff to scriptBuilder class
+
         if(_command == "s help")
         {
             std::cout << "sfile help\n";
@@ -75,8 +78,10 @@ int main (int argc, char *argv[])
         {
             exitLoop = true;
         }
+
+        // TODO: make sure this actually fucking works before making these system calls
+
         // system(_command.c_str());
         // newScript.addCommand(_command);
     }
-    return 0;
 }

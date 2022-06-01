@@ -20,6 +20,6 @@ class help
             std::cout << "sfile list - List all script files\n";
         }
         void Help() {
-            std::cout << "sfile help - Show this\n";
+            std::cout << "sfile help/-h/--help - Show this\n";
         }
 };
