@@ -29,6 +29,24 @@ class config
             }
         }
 
+        void readConfig()
+        {
+            std::fstream fFile;
+            fFile.open(configFile, std::ios::in);
+            if(fFile.is_open())
+            {
+                std::string line;
+                while(std::getline(fFile, line))
+                {
+                    if(line.find("script=") != std::string::npos)
+                    {
+                        scriptPath = homeEnvVar + line.substr(12);
+                    }
+                }
+                fFile.close();
+            }
+        }
+
         config()
         {
             homeEnvVar = std::getenv("HOME");
