@@ -10,25 +10,40 @@ bool exitLoop;
 
 int main (int argc, char *argv[])
 {
-    if(argc == 2 && std::string(argv[1]) == "--help" || "-h" || "help")
-    {
-        std::cout << "Usage: " << argv[0] << " [config] [script]" << std::endl;
-        std::cout << "sfile --help/-h/help - Show this\n";
-        std::cout << "s new [script] - Create a new script file\n";
-        std::cout << "s run [script] - Run a script file\n";
-        std::cout << "s edit [script] - Edit a script file\n";
-        std::cout << "s del [script] - Delete a script file\n";
-        std::cout << "s list - List all script files\n";
-        return 0;
-    }
-
     config conf;
     if(!conf.checkForConfig())
     {
         conf.makeConfig();
     }
+
     configPath = conf.configFile;
     scriptPath = conf.scriptPath;
+
+    if(argc == 2 && std::string(argv[1]) == "--help" || std::string(argv[1]) == "-h" || std::string(argv[1]) == "help")
+    {
+        std::cout << "Usage: " << argv[0] << " [config] [script]" << std::endl;
+        std::cout << "sfile --help/-h/help - Show this\n";
+        std::cout << "sfile new [script] - Create a new script file\n";
+        std::cout << "sfile run [script] - Run a script file\n";
+        std::cout << "sfile edit [script] - Edit a script file\n";
+        std::cout << "sfile del [script] - Delete a script file\n";
+        std::cout << "sfile list - List all script files\n";
+        return 0;
+    }else if(argc == 3 && std::string(argv[1]) == "new" || std::string(argv[1]) == "-n")
+    {
+
+    }else if(argc == 2 && std::string(argv[1]) == "list" || std::string(argv[1]) == "-l")
+    {
+        std::cout << "List of script files:" << std::endl;
+        for(auto &file : std::filesystem::directory_iterator("."))
+        {
+            if(file.path().extension() == ".sfile")
+            {
+                std::cout << file.path().filename() << std::endl;
+            }
+        }
+        return 0;
+    }
 
     script newScript(scriptPath + argv[1] + ".sh");
 
