@@ -34,7 +34,7 @@ class scriptExecutor
 
         void execute()
         {
-            system("." + _file);
+            // system("." + file);
         }
 
 
@@ -42,12 +42,13 @@ class scriptExecutor
 
 
 // Literally just the same thing as scriptBuilder. Make sure to make it execute all previous commands first.
-class scriptEditor : public scriptBuilder
+class scriptEditor
 {
+    std::string file;
     public:
         scriptEditor(std::string _file)
         {
-
+            file = _file;
         }
 };
 

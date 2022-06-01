@@ -10,7 +10,7 @@ bool exitLoop;
 config conf;
 help sHelp;
 
-void script();
+void buildScript();
 
 int main (int argc, char *argv[])
 {
