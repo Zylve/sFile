@@ -5,7 +5,7 @@ class help
 {
     public:
         void New() {
-            std::cout << "Usage: sfile new [script] - Create a new script file\n";
+            std::cout << "sfile new [script] - Create a new script file\n";
         }
         void Run() {
             std::cout << "sfile run [script] - Run a script file\n";
