@@ -14,69 +14,47 @@ void writeScript(std::string, bool);
 
 int main (int argc, char *argv[])
 {
-    if (argc == 1)
+    if (argc < 2)
     {
         std::cout << "Usage: " << argv[0] << " [subcommand] [script]\n";
         return 0;
     }
 
-    if(!conf.checkForConfig()) { conf.makeConfig(); }
+    if(!conf.checkForConfig())
+    conf.makeConfig();
     conf.readConfig();
     configPath = conf.configFile;
     scriptPath = conf.scriptPath;
 
-    char *mainArg = new char[std::string(argv[1]).length() + 1];
-
-    // TODO: convert to switch statement
+    // TODO: make this less messy
 
     if(std::string(argv[1]) == "--help" || "-h" || "help")
     {
         sHelp.display();
     }else if(std::string(argv[1]) == "--new" || "-n" || "new")
     {
-        if(argc == 3)
-        {
-            scriptName = std::string(argv[2]);
-            writeScript(scriptName, false);
-        }else{
-            std::cout << "Usage: " << argv[0] << " new [script]\n";
-        }
+        if(argc != 3) { std::cout << "Usage: " << argv[0] << " new [script]\n"; return 0; }
+        scriptName = std::string(argv[2]);
+        writeScript(scriptName, false);
     }else if(std::string(argv[1]) == "--run" || "-r" || "run")
     {
-        if(argc == 3)
-        {
-            scriptName = std::string(argv[2]);
-            scriptExecutor(std::string(scriptName));
-        }else{
-            std::cout << "Usage: " << argv[0] << " run [script]\n";
-        }
+        if(argc != 3) { std::cout << "Usage: " << argv[0] << " run [script]\n"; return 0; }
+        scriptName = std::string(argv[2]);
+        scriptExecutor(std::string(scriptName));
     }else if(std::string(argv[1]) == "--edit" || "-e" || "edit")
     {
-        if(argc == 3)
-        {
-            scriptName = std::string(argv[2]);
-            scriptEditor(std::string(scriptName));
-        }else{
-            std::cout << "Usage: " << argv[0] << " edit [script]\n";
-        }
+        if(argc != 3) { std::cout << "Usage: " << argv[0] << " edit [script]\n"; return 0; }
+        scriptName = std::string(argv[2]);
+        scriptEditor(std::string(scriptName));
     }else if(std::string(argv[1]) == "--delete" || "-d" || "del" || "delete")
     {
-        if(argc == 3)
-        {
-            scriptName = std::string(argv[2]);
-            scriptDeletor(std::string(scriptName));
-        }else{
-            std::cout << "Usage: " << argv[0] << " del [script]\n";
-        }
+        if(argc != 3) { std::cout << "Usage: " << argv[0] << " del [script]\n"; return 0; }
+        scriptName = std::string(argv[2]);
+        scriptDeletor(std::string(scriptName));
     }else if(std::string(argv[1]) == "--list" || "-l" || "list")
     {
-        // Why the fuck does this error
-        if(std::string(argc == 2))
-        {
-            scriptList(std::string(scriptPath)).listScripts();
-        }else{
-            std::cout << "Usage: " << argv[0] << " list\n";
-        }
+        if(argc != 2) { std::cout << "Usage: " << argv[0] << " list\n"; return 0; }
+        scriptList(std::string(scriptPath)).listScripts();
     }    
     // TODO: Add make and run certain class from scriptManager for if-else chain
 
