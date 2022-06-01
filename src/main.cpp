@@ -72,7 +72,12 @@ int main (int argc, char *argv[])
             std::cout << "s write - Write to the script\n";
             std::cout << "s quit - Quit the program\n";
         }
+        if(_command == "s quit")
+        {
+            exitLoop = true;
+        }
         // system(_command.c_str());
         // newScript.addCommand(_command);
     }
+    return 0;
 }
