@@ -10,7 +10,7 @@ bool exitLoop;
 config conf;
 help sHelp;
 
-void buildScript();
+void writeScript(std::string, bool);
 
 int main (int argc, char *argv[])
 {
@@ -31,24 +31,61 @@ int main (int argc, char *argv[])
 
     if(std::string(argv[1]) == "--help" || "-h" || "help")
     {
-        std::cout << "Usage: " << argv[0] << " [config] [script]" << "\n";
-        sHelp.Help();
-        sHelp.New();
-        sHelp.Run();
-        sHelp.Edit();
-        sHelp.Delete();
-        sHelp.List();
-        return 0;
-    }
-    // TODO: Add make and run certain class from scriptManager for switch case
+        sHelp.display();
+    }else if(std::string(argv[1]) == "--new" || "-n" || "new")
+    {
+        if(argc == 3)
+        {
+            scriptName = std::string(argv[2]);
+            writeScript(scriptName, false);
+        }else{
+            std::cout << "Usage: " << argv[0] << " new [script]\n";
+        }
+    }else if(std::string(argv[1]) == "--run" || "-r" || "run")
+    {
+        if(argc == 3)
+        {
+            scriptName = std::string(argv[2]);
+            scriptExecutor(std::string(scriptName));
+        }else{
+            std::cout << "Usage: " << argv[0] << " run [script]\n";
+        }
+    }else if(std::string(argv[1]) == "--edit" || "-e" || "edit")
+    {
+        if(argc == 3)
+        {
+            scriptName = std::string(argv[2]);
+            scriptEditor(std::string(scriptName));
+        }else{
+            std::cout << "Usage: " << argv[0] << " edit [script]\n";
+        }
+    }else if(std::string(argv[1]) == "--delete" || "-d" || "del" || "delete")
+    {
+        if(argc == 3)
+        {
+            scriptName = std::string(argv[2]);
+            scriptDeletor(std::string(scriptName));
+        }else{
+            std::cout << "Usage: " << argv[0] << " del [script]\n";
+        }
+    }else if(std::string(argv[1]) == "--list" || "-l" || "list")
+    {
+        // Why the fuck does this error
+        if(std::string(argc == 2))
+        {
+            scriptList(std::string(scriptPath)).listScripts();
+        }else{
+            std::cout << "Usage: " << argv[0] << " list\n";
+        }
+    }    
+    // TODO: Add make and run certain class from scriptManager for if-else chain
 
-    // Run if case = "new"
-    buildScript();
+    // writeScript(scriptname, isEditing boolean);
 
     return 0;
 }
 
-void buildScript()
+void writeScript(std::string scriptName, bool isEditing)
 {
     // Create new script
     scriptBuilder script(scriptPath + "foo bar" /* argv[2] */ + ".sh");
