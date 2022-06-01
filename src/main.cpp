@@ -10,7 +10,6 @@ bool exitLoop;
 
 int main (int argc, char *argv[])
 {
-
     config conf;
     if(!conf.checkForConfig())
     {
