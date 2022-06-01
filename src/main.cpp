@@ -10,14 +10,19 @@ bool exitLoop;
 
 int main (int argc, char *argv[])
 {
+    // TODO: Throw user out if argc = 1 and display a little usage command    
+
     config conf;
     if(!conf.checkForConfig())
     {
         conf.makeConfig();
     }
 
+    conf.readConfig();
+
     configPath = conf.configFile;
     scriptPath = conf.scriptPath;
+    std::cout << "Script Path: " << scriptPath << std::endl;
 
     if(argc == 2 && std::string(argv[1]) == "--help" || std::string(argv[1]) == "-h" || std::string(argv[1]) == "help")
     {
