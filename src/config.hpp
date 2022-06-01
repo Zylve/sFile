@@ -56,6 +56,5 @@ class config
                 std::filesystem::create_directory(homeEnvVar + "/.local/share/sfile/");
                 std::filesystem::permissions(homeEnvVar + "/.local/share/sfile/", std::filesystem::perms::all);
             }
-            scriptPath = homeEnvVar + "/.local/share/sfile/"; 
         }
 };
