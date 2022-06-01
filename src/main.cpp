@@ -14,7 +14,7 @@ int main (int argc, char *argv[])
 {
     if (argc == 1)
     {
-        std::cout << "";
+        std::cout << "Usage: " << argv[0] << " [subcommand] [script]\n";
         return 0;
     }
 
@@ -22,9 +22,8 @@ int main (int argc, char *argv[])
     conf.readConfig();
     configPath = conf.configFile;
     scriptPath = conf.scriptPath;
-    std::cout << "Script Path: " << scriptPath << "\n";
 
-    char *cstr = new char[std::string(argv[1]).length() + 1];
+    char *mainArg = new char[std::string(argv[1]).length() + 1];
 
     // TODO: convert to switch statement
 
