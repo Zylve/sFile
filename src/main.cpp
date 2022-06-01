@@ -25,37 +25,27 @@ int main (int argc, char *argv[])
     conf.readConfig();
     configPath = conf.configFile;
     scriptPath = conf.scriptPath;
+    std::string arg1 = std::string(argv[1]);
 
-    // TODO: make this less messy
-
-    if(std::string(argv[1]) == "--help" || "-h" || "help")
-    {
-        sHelp.display();
-    }else if(std::string(argv[1]) == "--new" || "-n" || "new")
-    {
-        if(argc != 3) { std::cout << "Usage: " << argv[0] << " new [script]\n"; return 0; }
-        scriptName = std::string(argv[2]);
-        writeScript(scriptName, false);
-    }else if(std::string(argv[1]) == "--run" || "-r" || "run")
-    {
-        if(argc != 3) { std::cout << "Usage: " << argv[0] << " run [script]\n"; return 0; }
-        scriptName = std::string(argv[2]);
-        scriptExecutor(std::string(scriptName));
-    }else if(std::string(argv[1]) == "--edit" || "-e" || "edit")
-    {
-        if(argc != 3) { std::cout << "Usage: " << argv[0] << " edit [script]\n"; return 0; }
-        scriptName = std::string(argv[2]);
-        scriptEditor(std::string(scriptName));
-    }else if(std::string(argv[1]) == "--delete" || "-d" || "del" || "delete")
-    {
-        if(argc != 3) { std::cout << "Usage: " << argv[0] << " del [script]\n"; return 0; }
-        scriptName = std::string(argv[2]);
-        scriptDeletor(std::string(scriptName));
-    }else if(std::string(argv[1]) == "--list" || "-l" || "list")
+    if(arg1 == "--help" || "-h" || "help")
+    sHelp.display();
+    else if(arg1 == "--list" || "-l" || "list")
     {
         if(argc != 2) { std::cout << "Usage: " << argv[0] << " list\n"; return 0; }
         scriptList(std::string(scriptPath)).listScripts();
-    }    
+    }
+    else if(arg1 == "--new" || "-n" || "new" || "--run" || "-r" || "run" || "--edit" || "-e" || "edit" || "--delete" || "-d" || "del" || "delete")
+    {
+        if(argc != 3) { std::cout << "Usage: " << argv[0] << " " << argv[1] << " [script]\n"; return 0; }
+        if (arg1 == "--new" || "-n" || "new")
+        writeScript(std::string(argv[2]), false);
+        else if (arg1 == "--run" || "-r" || "run")
+        scriptExecutor(std::string(argv[2]));
+        else if (arg1 == "--edit" || "-e" || "edit")
+        scriptEditor(std::string(argv[2]));
+        else if (arg1 == "--delete" || "-d" || "del" || "delete")
+        scriptDeletor(std::string(argv[2]));
+    }
     // TODO: Add make and run certain class from scriptManager for if-else chain
 
     // writeScript(scriptname, isEditing boolean);
