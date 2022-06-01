@@ -1,6 +1,8 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/zylve/sfile/badge)](https://www.codefactor.io/repository/github/zylve/sfile)
+Simple utility to write and manage script files.
 
-Requirements
-============
-
-bsdtar
+To compile:
+```
+$ git clone https://github.com/zylve/sfile
+$ cd sfile
+$ gcc -g -std=c++20	src\/*.cpp -o sfile
+```
