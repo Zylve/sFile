@@ -36,10 +36,7 @@ class scriptExecutor
         {
             // system("." + file);
         }
-
-
 };
-
 
 // Literally just the same thing as scriptBuilder. Make sure to make it execute all previous commands first.
 class scriptEditor
@@ -70,13 +67,16 @@ class scriptDeletor
 class scriptList
 {
     public:
-        scriptList()
-        {
+        std::string path;
 
+        scriptList(std::string _path)
+        {
+            path = _path;
         }
 
         void listScripts()
         {
-
+            // List directories
+            std::filesystem::directory_iterator dir(path);
         }
 };
