@@ -4,5 +4,5 @@ To compile:
 ```
 $ git clone https://github.com/zylve/sfile
 $ cd sfile
-$ gcc -g -std=c++20	src\/*.cpp -o sfile
+$ gcc -g -std=c++20 src\/*.cpp -o sfile
 ```
