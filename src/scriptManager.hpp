@@ -15,9 +15,28 @@ class scriptBuilder
             cmds.push_back(command);
         }
 
-        scriptBuilder(std::string _file)
+        void help()
         {
-            file = _file;
+            std::cout << "sfile help\n";
+            std::cout << "s help - Show this\n";
+            std::cout << "s new - Create a new script file\n";
+            std::cout << "s roll - Remove the last command sent from the write queue\n";
+            std::cout << "s write - Write to the script\n";
+            std::cout << "s quit - Quit the program\n";
+        }
+
+        scriptBuilder(std::string _file, bool _editing)
+        {
+            // TODO: Check if file exists
+            file = std::string(_file);
+            if(!_editing)
+            {
+                cmds.push_back("#!/bin/bash");
+                cmds.push_back("");
+            }else{
+                std::string _cmd = "." + file;
+                system(_cmd.c_str());
+            }
         }
 };
 
@@ -37,18 +56,6 @@ class scriptExecutor
             // system("." + file);
         }
 };
-
-// Literally just the same thing as scriptBuilder. Make sure to make it execute all previous commands first.
-class scriptEditor
-{
-    std::string file;
-    public:
-        scriptEditor(std::string _file)
-        {
-            file = _file;
-        }
-};
-
 
 class scriptDeletor
 {
