@@ -70,7 +70,7 @@ void writeScript(std::string scriptName, bool isEditing)
 
         if(_command == "s help")
         {
-
+            sb.help();
         }
         if(_command == "s quit")
         {
