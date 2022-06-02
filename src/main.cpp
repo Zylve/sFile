@@ -58,7 +58,7 @@ void writeScript(std::string scriptName, bool isEditing)
     scriptBuilder sb(scriptName, isEditing);
 
     // Iterate through std::cin and add commands to script until the user runs "s quit"
-    std::cout << "Welcome to sfile. Type \"s help\" for a listing of commands" << "\n";
+    std::cout << "Welcome to sfile. Type \"s help\" for a listing of commands\n";
     while (!exitLoop)
     {
         std::string _command;
