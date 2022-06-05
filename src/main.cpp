@@ -69,17 +69,19 @@ void writeScript(std::string scriptName, bool isEditing)
         // TODO: offload help stuff to scriptBuilder class
 
         if(_command == "s help")
-        {
-            sb.help();
-        }
-        if(_command == "s quit")
-        {
+        sb.help();
+        else if(_command == "s roll")
+        sb.rollback();
+        else if(_command == "s write")
+        sb.write();
+        else if(_command == "s quit") {
             exitLoop = true;
+            std::cout << "Exiting sfile\n";
+        }else{
+            // TODO: make sure this actually fucking works before making these system calls
+
+            // system(_command.c_str());
+            // newScript.addCommand(_command);
         }
-
-        // TODO: make sure this actually fucking works before making these system calls
-
-        // system(_command.c_str());
-        // newScript.addCommand(_command);
     }
 }
