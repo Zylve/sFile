@@ -45,16 +45,17 @@ class config
                 }
                 fFile.close();
             }
+
+            if(!std::filesystem::exists(scriptPath))
+            {
+                std::filesystem::create_directory(scriptPath);
+                std::filesystem::permissions(scriptPath, std::filesystem::perms::all);
+            }
         }
 
         config()
         {
             homeEnvVar = std::getenv("HOME");
             configFile = homeEnvVar + "/.config/sfile.conf";
-            if(!std::filesystem::exists(homeEnvVar + "/.local/share/sfile/"))
-            {
-                std::filesystem::create_directory(homeEnvVar + "/.local/share/sfile/");
-                std::filesystem::permissions(homeEnvVar + "/.local/share/sfile/", std::filesystem::perms::all);
-            }
         }
 };

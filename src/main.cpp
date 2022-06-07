@@ -23,19 +23,25 @@ int main (int argc, char *argv[])
     if(!conf.checkForConfig())
     conf.makeConfig();
     conf.readConfig();
+    std::cout << scriptPath << std::endl;
     configPath = conf.configFile;
     scriptPath = conf.scriptPath;
 
     std::string arg1 = std::string(argv[1]);
 
     if(arg1 == "--help" || "-h" || "help")
-    sHelp.display();
+    {
+        sHelp.display();
+        return 0;
+    }
     else if(arg1 == "--list" || "-l" || "list")
     {
         if(argc != 2) { std::cout << "Usage: " << argv[0] << " list\n"; return 0; }
         scriptList(std::string(scriptPath)).listScripts();
+        return 0;
     }
-    else if(arg1 == "--new" || "-n" || "new" || "--run" || "-r" || "run" || "--edit" || "-e" || "edit" || "--delete" || "-d" || "del" || "delete")
+    std::cout << "arg1: " << arg1 << std::endl;
+    if(arg1 == "--new" || "-n" || "new" || "--run" || "-r" || "run" || "--edit" || "-e" || "edit" || "--delete" || "-d" || "del" || "delete")
     {
         if(argc != 3) { std::cout << "Usage: " << argv[0] << " " << argv[1] << " [script]\n"; return 0; }
         if (arg1 == "--new" || "-n" || "new")
@@ -63,7 +69,7 @@ void writeScript(std::string scriptName, bool isEditing)
     {
         std::string _command;
 
-        std::cout << "sfile >> ";
+        std::cout << "[sfile]$ ";
         std::cin >> _command;
 
         // TODO: offload help stuff to scriptBuilder class
