@@ -72,8 +72,6 @@ void writeScript(std::string scriptName, bool isEditing)
         std::cout << "[sfile]$ ";
         std::cin >> _command;
 
-        // TODO: offload help stuff to scriptBuilder class
-
         if(_command == "s help")
         sb.help();
         else if(_command == "s roll")
@@ -86,8 +84,8 @@ void writeScript(std::string scriptName, bool isEditing)
         }else{
             // TODO: make sure this actually fucking works before making these system calls
 
-            // system(_command.c_str());
-            // newScript.addCommand(_command);
+            system(_command.c_str());
+            sb.addCommand(_command);
         }
     }
 }

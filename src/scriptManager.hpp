@@ -43,7 +43,6 @@ class scriptBuilder
 
         scriptBuilder(std::string _file, bool _editing)
         {
-            // TODO: Check if file exists
             file = std::string(_file);
             if(!_editing && !std::filesystem::exists(file))
             {
