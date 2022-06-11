@@ -75,17 +75,29 @@ void writeScript(std::string scriptName, bool isEditing)
         std::cout << "[sfile]$ ";
         std::cin >> _command;
 
-        if(_command == "s help")
-        sb.help();
-        else if(_command == "s roll")
-        sb.rollback();
-        else if(_command == "s write")
-        sb.write();
-        else if(_command == "s quit") {
+        if(strcmp(_command.c_str(), "s help") == 0)
+        {
+            sb.help();
+            break;
+        }
+        else if(strcmp(_command.c_str(), "s roll") == 0)
+        {
+            sb.rollback();
+            break;
+        }
+        else if(strcmp(_command.c_str(), "s write") == 0)
+        {
+            sb.write();
+            break;
+        }
+        else if(strcmp(_command.c_str(), "s quit") == 0)
+        {
             exitLoop = true;
             std::cout << "Exiting sfile\n";
             exit(0);
-        }else{
+        }
+        else
+        {
             system(_command.c_str());
             sb.addCommand(_command);
         }
