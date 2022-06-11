@@ -55,6 +55,7 @@ class scriptBuilder
             else if(!_editing && std::filesystem::exists(file))
             {
                 std::cout << "File already exists" << std::endl;
+                exit(1);
             }
             else if(_editing && !std::filesystem::exists(file))
             {
@@ -75,13 +76,14 @@ class scriptExecutor
     public:
         scriptExecutor(std::string _file)
         {
-            file =_file;
-            // TODO: find the script within scriptPath and execute it
-        }
-
-        void execute()
-        {
-            // system("." + file);
+            if(!std::filesystem::exists(_file))
+            {
+                std::cout << "File does not exist\n";
+                exit(1);
+            }else{
+                system(("." + _file).c_str());
+                exit(0);
+            }
         }
 };
 
@@ -90,12 +92,14 @@ class scriptDeletor
     public:
         scriptDeletor(std::string _file)
         {
-
-        }
-        
-        void deleteScript()
-        {
-
+            if(!std::filesystem::exists(_file))
+            {
+                std::cout << "File does not exist\n";
+                exit(1);
+            }else{
+                std::filesystem::remove(_file);
+                exit(0);
+            }
         }
 };
 
@@ -106,12 +110,7 @@ class scriptList
 
         scriptList(std::string _path)
         {
-            path = _path;
-        }
-
-        void listScripts()
-        {
-            // List directories
-            std::filesystem::directory_iterator dir(path);
+            std::filesystem::directory_iterator dir(_path);
+            exit(0);
         }
 };

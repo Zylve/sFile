@@ -25,7 +25,7 @@ class help
         void display()
         {
             std::cout << "sfile - A simple script manager\n";
-            std::cout << "Usage: sfile [subcommand] [script]\n";
+            std::cout << "Usage: sfile [subcommand] [script]\n\n";
             std::cout << "Subcommands:\n";
             New();
             Run();
@@ -33,5 +33,15 @@ class help
             Delete();
             List();
             Help();
+            exit(0);
+        }
+
+        void usageHelp(char* arg0, char* arg1, int argc)
+        {
+            if(argc != 3)
+            {
+                std::cout << "Usage: " << arg0 << " " << arg1 << "\n";
+                exit(0);
+            }
         }
 };
